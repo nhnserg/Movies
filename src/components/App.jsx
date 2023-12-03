@@ -1,3 +1,8 @@
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 export const App = () => {
   return (
     <div
@@ -14,3 +19,7 @@ export const App = () => {
     </div>
   );
 };
+
+
+
+//  KEY API 4c22694614865aab1f8d67ad6cba4463
