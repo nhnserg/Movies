@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import GoBack from 'components/GoBack/GoBack';
 import notification from 'helpers/notification';
-import { getElementById } from '../service/api'; // Предположим, что путь верный
+import { getMovieDetails } from '../service/api';
 import Loader from '../components/Loader/Loading';
 import InfoMovie from '../components/Movies/Movies';
 
@@ -14,7 +14,7 @@ const MovieDetails = () => {
 
     const fetchElementById = async () => {
         try {
-            const infos = await getElementById(movieId);
+            const infos = await getMovieDetails(movieId);
             setInfo(infos);
         } catch ({ message }) {
             notification(message);

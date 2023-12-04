@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import castStyles from './Cast.module.css';
 import { getMovieCredits } from '../../service/api';
 import notification from '../../helpers/notification';
-import Loader from '../components/Loader/Loading';
+import Loader from '../Loader/Loading';
 
 const Cast = () => {
     const { movieId } = useParams();

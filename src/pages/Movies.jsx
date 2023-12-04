@@ -4,7 +4,7 @@ import SearchMovies from "../components/SearchMovies/SearchMovies";
 import notification from "../helpers/notification";
 import { useState, useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
-import { getMoviesBySearch } from "../service/api"; // Предположим, что путь верный
+import { searchMovies } from "../service/api"; // Предположим, что путь верный
 
 const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +25,7 @@ const Movies = () => {
 
             setLoading(true);
 
-            const { results } = await getMoviesBySearch(querySearch);
+            const { results } = await searchMovies(querySearch);
 
             setMovies(results);
 

@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import reviewsStyles from './Reviews.module.css';
 import { getMovieReviews } from '../../service/api';
 import notification from '../../helpers/notification';
-import Loader from '../components/Loader/Loading';
+import Loader from '../Loader/Loading';
 
 const Reviews = () => {
     const { movieId } = useParams();
