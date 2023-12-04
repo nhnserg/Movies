@@ -1,0 +1,12 @@
+.castImage {
+    width: 100%;
+    height: auto;
+  }
+  
+  .castName {
+    font-weight: bold;
+  }
+  
+  .castCharacter {
+    color: #555;
+  }
