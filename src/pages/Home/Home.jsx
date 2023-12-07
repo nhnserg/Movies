@@ -1,7 +1,7 @@
 import { Title } from './Home.styled';
 import MoviesList from '../../components/MoviesList/MoviesList';
 import { useState, useEffect } from 'react';
-import { fetchTrend } from '../../Services/api';
+import { fetchTrend } from '../../services/api';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);

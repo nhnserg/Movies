@@ -2,9 +2,9 @@ import MovieDetails from 'pages/MovieDetails/MovieDetails';
 import { Search } from 'components/Search/Search';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { useState, useEffect } from 'react';
-import { useParams,useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
-import { fetchSearch } from 'Services/api';
+import { fetchSearch } from '../../services/api';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -19,7 +19,7 @@ const Movies = () => {
 
   const handleSubmit = value => {
   };
-  
+
   useEffect(() => {
     if (query) {
       fetchSearch(query).then(movies => {

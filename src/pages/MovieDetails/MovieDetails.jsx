@@ -19,7 +19,7 @@ import {
   GenresStyles,
   InfoItem,
 } from './MovieDetails.styled';
-import { fetchMovieDetails } from 'Services/api';
+import { fetchMovieDetails } from '../../services/api';
 
 const baseUrl = 'https://image.tmdb.org/t/p/w300';
 
