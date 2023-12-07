@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 export const MovieList = styled.ul`
   list-style: none;
   padding: 0;
@@ -30,5 +32,58 @@ export const MovieItem = styled.li`
     &:hover {
       color: #007bff;
     }
+  }
+`;
+export const MovieImage = styled.img`
+    width: 250px;
+
+@media screen and (min-width: 768px) {
+  width: 200px;
+  height: 300px;
+}
+`;
+
+export const NoResults = styled.p`
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+  text-align: center;
+`;
+
+export const MovieDescription = styled.p`
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+`;
+
+export const DefaultImage = styled.img`
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+export const PlaceholderText = styled.span`
+  color: #777;
+`;
+
+export const DefaultPoster = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+export const StyledLink = styled(Link)`
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: #007bff;
   }
 `;
