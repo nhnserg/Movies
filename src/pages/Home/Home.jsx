@@ -1,4 +1,4 @@
-import { Title } from './Home.styled';
+import { Main, Title } from './Home.styled';
 import MoviesList from '../../components/MoviesList/MoviesList';
 import { useState, useEffect } from 'react';
 import { fetchTrend } from '../../services/api';
@@ -14,10 +14,10 @@ const Home = () => {
     });
   }, []);
   return (
-    <main>
+    <Main>
       <Title>Trending today</Title>
       <MoviesList movies={movies}></MoviesList>
-    </main>
+    </Main>
   );
 };
 export default Home;
