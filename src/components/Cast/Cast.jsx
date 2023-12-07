@@ -1,49 +1,49 @@
-// components/Cast.js
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import styles from './styles.module.css';
-import castStyles from './Cast.module.css';
-import { getMovieCredits } from '../../service/api';
-import notification from '../../helpers/notification';
-import Loader from '../Loader/Loading';
+import { CastImg, CastItem, CastList, CastName, Character } from "./Cast.styled"
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { fetchCast } from "../../Services/api";
+
+const baseUrl = 'https://image.tmdb.org/t/p/w200';
+const defaultImg =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/images=300x200';
 
 const Cast = () => {
-    const { movieId } = useParams();
-    const [cast, setCast] = useState([]);
-    const [loader, setLoader] = useState(false);
+  const { movieId } = useParams();
+  const [movieCast, setMovieCast] = useState([]);
 
-    useEffect(() => {
-        setLoader(true);
+  useEffect(() => {
+    if (movieId) {
+      fetchCast(movieId).then(movies => {
+        if (movies.cast.length > 0) {
+          setMovieCast(movies.cast);
+        }
+      });
+    }
+  }, [movieId]);
 
-        const fetchCast = async () => {
-            try {
-                const credits = await getMovieCredits(movieId);
-                setCast(credits);
-            } catch ({ message }) {
-                notification(message);
-            } finally {
-                setLoader(false)
-            }
-        };
+  return (
+    <div>
+      <CastList>
+        {movieCast.map(movie => {
+          return (
+            <CastItem key={movie.id}>
+              <CastImg
+                src={
+                  movie.profile_path
+                    ? `${baseUrl}${movie.profile_path}`
+                    : defaultImg
+                }
+                alt=""
+              ></CastImg>
+              <CastName>{movie.name}</CastName>
+              <Character>Character: {movie.character}</Character>
+            </CastItem>
+          );
+        })}
 
-        fetchCast();
-    }, [movieId]);
+      </CastList>
+    </div>
+  );
+}
 
-    return (
-        <div className={styles.container}>
-            {loader && <Loader />}
-            <h2 className={styles.sectionTitle}>Cast</h2>
-            <ul className={styles.castList}>
-                {cast.map((actor) => (
-                    <li key={actor.id} className={styles.castListItem}>
-                        <img src={`https://image.tmdb.org/t/p/w100${actor.profile_path}`} alt={actor.name} className={styles.castImage} />
-                        <p className={castStyles.castName}>{actor.name}</p>
-                        <p className={castStyles.castCharacter}>{actor.character}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
-
-export default Cast;
+export default Cast
