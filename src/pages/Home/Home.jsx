@@ -15,7 +15,7 @@ const Home = () => {
   }, []);
   return (
     <Main>
-      <Title>Trending today</Title>
+      <Title></Title>
       <MoviesList movies={movies}></MoviesList>
     </Main>
   );
