@@ -37,10 +37,10 @@ export const MovieItem = styled.li`
 export const MovieImage = styled.img`
     width: 250px;
 
-@media screen and (min-width: 768px) {
-  width: 200px;
-  height: 300px;
-}
+  @media screen and (min-width: 768px) {
+    width: 200px;
+    height: 300px;
+  }
 `;
 
 export const NoResults = styled.p`
