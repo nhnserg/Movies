@@ -1,27 +1,43 @@
 import defaultPoster from '../../images/default_poster.jpeg';
-import { MovieList, MovieItem, MovieImage } from './MoviesList.styled'; // Assuming you have a styled component for the image
-import { Link, useLocation } from 'react-router-dom';
+import {
+  MovieList,
+  Item,
+  Poster,
+  MovieLink,
+  MovieTitle,
+  MovieRelease,
+} from './MoviesList.styled';
 
-const MoviesList = ({ movies }) => {
-  const location = useLocation();
+
+const MoviesList = ({ movies, location }) => {
 
   return (
     <MovieList>
-      {movies.map((movie) => {
-        const name = movie.name ?? movie.title;
-        const imageUrl = movie.poster_path
-          ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-          : defaultPoster
-
-        return (
-          <MovieItem key={movie.id}>
-            <Link to={`${movie.id}`} state={{ from: location }}>
-              <MovieImage src={imageUrl} alt={name} />
-              {name}
-            </Link>
-          </MovieItem>
-        );
-      })}
+      {movies.map(
+        ({
+          id,
+          original_title,
+          poster_path,
+          release_date,
+        }) => (
+          <Item key={id}>
+            <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+              <Poster
+                src={
+                  poster_path
+                    ? `https://image.tmdb.org/t/p/w200${poster_path}`
+                    : defaultPoster
+                }
+                alt={original_title}
+              />
+              <MovieTitle>{original_title}</MovieTitle>
+              {release_date && (
+                <MovieRelease />
+              )}
+            </MovieLink>
+          </Item>
+        )
+      )}
     </MovieList>
   );
 };

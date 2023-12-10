@@ -33,3 +33,4 @@ export const Search = ({ onSubmit }) => {
     </SearchForm>
   );
 };
+export default Search

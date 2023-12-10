@@ -1,49 +1,36 @@
 import axios from 'axios';
-const KEY = '4c22694614865aab1f8d67ad6cba4463';
+
+const KEY = '59ebc442501bddfafe2b400f88f1e660';
 axios.defaults.baseURL = 'https://api.themoviedb.org';
 axios.defaults.params = {
   api_key: KEY,
 };
-export async function fetchTrend() {
-  try {
-    const response = await axios.get('/3/trending/movie/week');
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-}
-export async function fetchSearch(value) {
-  try {
-    const response = await axios.get(`/3/search/movie?query=${value}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-}
+export const fetchTrend = async () => {
+  const { data } = await axios.get('/3/trending/movie/week');
+  return data.results;
+};
+export const getfetchSearch = async id => {
+  const { data } = await axios.get(`/3/movie/${id}`);
 
-export async function fetchMovieDetails(id) {
-  try {
-    const response = await axios.get(`/3/movie/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-}
+  return data;
+};
 
-export async function fetchCast(id) {
-  try {
-    const response = await axios.get(`/3/movie/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-}
+export const fetchMovieDetails = async (query, page) => {
+  const { data } = await axios.get(
+    `/3/search/movie?query=${query}&page=${page}`
+  );
 
-export async function fetchReview(id) {
-  try {
-    const response = await axios.get(`/3/movie/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-}
+  return data;
+};
+
+export const fetchCast = async id => {
+  const { data } = await axios.get(`/3/movie/${id}/credits`);
+
+  return data;
+};
+
+export const fetchReview = async id => {
+  const { data } = await axios.get(`3/movie/${id}/reviews`);
+
+  return data;
+};

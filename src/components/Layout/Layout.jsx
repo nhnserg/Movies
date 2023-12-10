@@ -1,20 +1,30 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Link } from '../Layout/Layout.styled';
+import { Header, Nav, StyledNavLink } from '../Layout/Layout.styled';
+import { IoHomeOutline } from 'react-icons/io5';
+import { RiMovie2Line } from 'react-icons/ri';
+import Loader from 'components/Loader/Loader';
 
 const Layout = () => {
   return (
-    <Container>
+    <>
       <Header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>
-        </nav>
+        <Nav>
+          <StyledNavLink to="/">
+            Home
+            <IoHomeOutline />
+          </StyledNavLink>
+          <StyledNavLink to="/movies">
+            Movies
+            <RiMovie2Line />
+          </StyledNavLink>
+        </Nav>
       </Header>
-      <Suspense fallback={<div>Loading page...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-    </Container>
+    </>
   );
 };
+
 export default Layout;

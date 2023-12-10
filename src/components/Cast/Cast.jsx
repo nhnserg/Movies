@@ -1,60 +1,48 @@
-import { CastImg, CastItem, CastList, CastName, Character } from "./Cast.styled"
+import { CastItem, CastList } from "./Cast.styled"
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { fetchCast } from "../../services/api";
-import Loader from "components/Loader/Loader";
-
-const baseUrl = 'https://image.tmdb.org/t/p/w200';
-const defaultImg =
-  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/images=300x200';
+import notification from "helpers/notification";
 
 const Cast = () => {
   const { movieId } = useParams();
   const [movieCast, setMovieCast] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCastData = async () => {
+    const fetchDataCast = async () => {
       try {
-        const data = await fetchCast(movieId);
-        setMovieCast(data.cast);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching cast information', error);
-        setLoading(false);
+        const response = await fetchCast(movieId);
+        setMovieCast(response.cast);
+      } catch ({ message }) {
+        notification(message)
       }
     };
 
-    fetchCastData();
+    fetchDataCast();
   }, [movieId]);
 
   return (
-    <div>
-      {loading ? (
-        <Loader />
+    <CastList>
+      {movieCast.length > 0 ? (
+        movieCast.map(cast => (
+          <CastItem key={cast.id}>
+            <img
+              src={
+                cast.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
+                  : 'https://koshka.top/uploads/posts/2021-12/thumbs/1640007343_4-koshka-top-p-koti-ugar-4.jpg'
+              }
+              alt={cast.name}
+            />
+            <h1>{cast.name}</h1>
+            <h3>Character: {cast.character}</h3>
+          </CastItem>
+        ))
       ) : (
-        <CastList>
-          {movieCast?.length > 0 ? (
-            movieCast.map(movie => (
-              <CastItem key={movie.id}>
-                <CastImg
-                  src={
-                    movie.profile_path
-                      ? `${baseUrl}${movie.profile_path}`
-                      : defaultImg
-                  }
-                  alt=""
-                ></CastImg>
-                <CastName>{movie.name}</CastName>
-                <Character>Character: {movie.character}</Character>
-              </CastItem>
-            ))
-          ) : (
-            <p>No cast information available</p>
-          )}
-        </CastList>
+        <div>No Cast information available</div>
       )}
-    </div>
+    </CastList>
   );
-}
+};
+
 export default Cast;

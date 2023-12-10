@@ -1,25 +1,33 @@
- import styled from 'styled-components';
+import styled from 'styled-components';
 
-export const CastList = styled.ul`
-  max-width: 1440px;
+export const CastList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: space-around;
 `;
-export const CastItem = styled.li`
-  list-style-type: none;
-  width: 120px;
-  max-height: 320px;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  border-radius: 8px; 
-  padding: 10px;
+
+export const CastItem = styled.div`
+  margin: 10px;
+  text-align: center;
+
+  img {
+    width: 150px;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  h1 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
 `;
-export const CastImg = styled.img`
-  border: 2px solid #ddd; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  border-radius: 8px;
-  width: 100%;
+
+export const NoCastMsg = styled.div`
+  text-align: center;
+  font-size: 1.2rem;
 `;
-export const CastName = styled.p``
-export const Character = styled.p``

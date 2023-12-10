@@ -1,119 +1,59 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Style = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
-export const Movie = styled.div`
-  display: flex;
-  margin-top: 20px;
-`;
-
-export const MovieImg = styled.img`
-  width: 300px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 20px;
-`;
-
-export const MovieInfo = styled.div`
-  flex: 1;
-`;
-
-export const MovieName = styled.h1`
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-export const UserScore = styled.p`
+export const GoBackBtn = styled(Link)`
+  display: inline-block;
+  padding: 10px 20px;
   font-size: 16px;
-  color: #555;
-  margin-bottom: 10px;
-`;
-
-export const Overview = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 20px;
-`;
-
-export const OverviewText = styled.p`
-  font-size: 16px;
-  color: #555;
+  text-decoration: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
   margin-bottom: 20px;
 `;
 
-export const Genres = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 20px;
-`;
-
-export const GenresStyles = styled.div`
+export const AdLinksWrap = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
 `;
 
-export const GenresText = styled.span`
+export const AdLink = styled(Link)`
+  display: inline-block;
+  padding: 10px 20px;
   font-size: 16px;
-  color: #007bff;
-  margin-right: 10px;
-  margin-bottom: 10px;
-`;
-
-export const GoBackBtn = styled.button`
+  text-decoration: none;
   background-color: #007bff;
   color: #fff;
-  padding: 10px 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-
-  svg {
-    margin-right: 5px;
-  }
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
 
   &:hover {
     background-color: #0056b3;
   }
+`;
 
-  &:focus {
-    outline: none;
+export const ScrollUpBtn = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #0056b3;
   }
 `;
 
-export const AdInfo = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 20px;
+// Дополнительные стили, связанные с MovieInfo (предположим, что MovieInfo - это отдельный компонент)
+export const MovieInfo = styled.div`
+  /* Ваши стили для информации о фильме */
 `;
 
-export const InfoList = styled.ul`
-  list-style: none;
-  padding: 0;
-  display: flex;
-  margin-bottom: 20px;
-`;
-
-export const InfoItem = styled.li`
-  margin-right: 20px;
-
-  a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 18px;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-
-    &:hover {
-      color: #0056b3;
-    }
-  }
-`;
+// ... (остальные стили, если требуется)
