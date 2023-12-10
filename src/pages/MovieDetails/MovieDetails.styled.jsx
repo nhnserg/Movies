@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const GoBackBtn = styled(Link)`
@@ -33,7 +33,7 @@ export const AdLink = styled(Link)`
   }
 `;
 
-export const ScrollUpBtn = styled.button`
+export const Scroll = styled.button`
   position: fixed;
   bottom: 20px;
   right: 20px;

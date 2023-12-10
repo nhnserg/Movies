@@ -1,27 +1,21 @@
 import defaultPoster from '../../images/default_poster.jpeg';
 import {
-    MovieInfoContainer,
     InfoSectionWrapper,
     Info,
     MovieInfoPoster,
     MovieDescription,
     MovieInfoTitle,
     Line,
-    ScoreText,
-    MovieInfoScore,
     SubTitle,
     GenresList,
-} from './MovieInfo.styled';
-import makePercentage from 'helpers/makePercentage';
-import determineReviewColor from 'helpers/determineReviewColor';
-import { Container } from 'components/App/App.styled';
+} from './Movieinfo.styled';
 
-const MovieInfo = ({
+
+export const MovieInfo = ({
     movie: {
         backdrop_path,
         original_title,
         poster_path,
-        vote_average,
         overview,
         genres,
     },
@@ -33,42 +27,31 @@ const MovieInfo = ({
     const backdropSrc = backdrop_path ? backdropUrl : defaultPoster;
 
     return (
-        <Container>
-            <MovieInfoContainer>
-                <InfoSectionWrapper $backdropSrc={backdropSrc}>
-                    <Info>
-                        <MovieInfoPoster src={posterSrc} alt="original_title" />
-                        <MovieDescription>
-                            <MovieInfoTitle>{original_title}</MovieInfoTitle>
-                            <Line />
-                            <ScoreText>
-                                User score:
-                                <MovieInfoScore
-                                    color={determineReviewColor(makePercentage(vote_average))}
-                                >
-                                    {makePercentage(vote_average)}%
-                                </MovieInfoScore>
-                            </ScoreText>
+        <InfoSectionWrapper $backdropSrc={backdropSrc}>
+            <Info>
+                <MovieInfoPoster src={posterSrc} alt={original_title} />
+                <MovieDescription>
+                    <MovieInfoTitle>{original_title}</MovieInfoTitle>
+                    <Line />
+                    {/* Additional movie details */}
+                    <SubTitle>Overview</SubTitle>
+                    <p>{overview}</p>
 
-                            <SubTitle>Overview</SubTitle>
-                            <p>{overview}</p>
-
-                            {genres.length > 0 && (
-                                <>
-                                    <SubTitle>Genres</SubTitle>
-                                    <GenresList>
-                                        {genres.map(genre => (
-                                            <p key={genre.id}>{genre.name}</p>
-                                        ))}
-                                    </GenresList>
-                                </>
-                            )}
-                        </MovieDescription>
-                    </Info>
-                </InfoSectionWrapper>
-            </MovieInfoContainer>
-        </Container>
+                    {genres.length > 0 && (
+                        <>
+                            <SubTitle>Genres</SubTitle>
+                            <GenresList>
+                                {genres.map(genre => (
+                                    <p key={genre.id}>{genre.name}</p>
+                                ))}
+                            </GenresList>
+                        </>
+                    )}
+                </MovieDescription>
+            </Info>
+        </InfoSectionWrapper>
     );
 };
+
 
 export default MovieInfo;

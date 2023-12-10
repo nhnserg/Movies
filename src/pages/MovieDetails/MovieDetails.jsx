@@ -4,12 +4,12 @@ import { Suspense } from 'react';
 import { getfetchSearch } from '../../services/api';
 import notification from 'helpers/notification';
 import Loader from 'components/Loader/Loader';
+import MovieInfo from 'components/MovieInfo/MovieInfo';
+import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
+import Scroll from 'components/Scroll/Scroll'
 import {
-  GoBackBtn,
-  MovieInfo,
   AdLinksWrap,
   AdLink,
-  ScrollUpBtn,
 } from './MovieDetails.styled'
 
 
@@ -47,7 +47,7 @@ const MovieDetails = () => {
         <AdLink to="cast">Cast</AdLink>
         <AdLink to="reviews">Reviews</AdLink>
       </AdLinksWrap>
-      <ScrollUpBtn />
+      <Scroll />
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

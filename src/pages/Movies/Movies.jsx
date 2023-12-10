@@ -9,6 +9,7 @@ import PaginationList from 'components/PaginationList/PaginationList';
 import Scroll from 'components/Scroll/Scroll';
 import smScroll from 'helpers/smScroll';
 
+
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
